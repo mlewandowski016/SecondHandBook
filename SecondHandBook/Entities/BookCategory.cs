@@ -1,0 +1,29 @@
+﻿namespace SecondHandBook.Entities
+{
+    public enum BookCategory
+    {
+        LiteraryFiction,
+        HistoricalFiction,
+        Fantasy,
+        SciFi,
+        Romance,
+        Thriller,
+        Mystery,
+        Horror,
+        BiographyAutobiography,
+        SelfHelp,
+        History,
+        Travel,
+        TrueCrime,
+        Science,
+        Nature,
+        Philosophy,
+        Psychology,
+        PictureBooks,
+        MiddleGrade,
+        YoungAdult,
+        Poetry,
+        Comics,
+        Religion
+    }
+}
