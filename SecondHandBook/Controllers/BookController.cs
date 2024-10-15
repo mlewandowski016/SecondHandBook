@@ -8,6 +8,7 @@ using SecondHandBook.Services;
 namespace SecondHandBook.Controllers
 {
     [Route("api/book")]
+    [ApiController]
     public class BookController : ControllerBase
     {
         private readonly IBookService _bookService;
@@ -20,11 +21,6 @@ namespace SecondHandBook.Controllers
         [HttpPost]
         public ActionResult CreateBook([FromBody] CreateBookDto dto)
         {
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var id = _bookService.Create(dto);
 
             return Created($"/api/book/{id}", null);
@@ -41,29 +37,15 @@ namespace SecondHandBook.Controllers
         [HttpGet("{id}")]
         public ActionResult<BookDto> GetById([FromRoute] int id)
         {
-            var book = _bookService.GetById(id);
+            var result =  _bookService.GetById(id);
 
-            if (book == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(book);
+            return Ok(result);
         }
 
         [HttpPut("{id}")]
         public ActionResult Update([FromBody] UpdateBookDto dto, [FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var isUpdated = _bookService.Update(id, dto);
-            if(!isUpdated)
-            {
-                return NotFound();
-            }
+            _bookService.Update(id, dto);
 
             return Ok();
         }
@@ -71,14 +53,9 @@ namespace SecondHandBook.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete([FromRoute] int id)
         {
-            var isDeleted = _bookService.Delete(id);
+            _bookService.Delete(id);
 
-            if(isDeleted)
-            {
-                return NoContent();
-            }
-
-            return NotFound();
+            return NoContent();
         }
     }
 }

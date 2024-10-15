@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SecondHandBook.Entities;
+using SecondHandBook.Exceptions;
 using SecondHandBook.Models;
 
 namespace SecondHandBook.Services
@@ -9,8 +10,8 @@ namespace SecondHandBook.Services
         BookDto GetById(int id);
         IEnumerable<BookDto> GetAll();
         int Create(CreateBookDto dto);
-        bool Update(int id, UpdateBookDto dto);
-        bool Delete(int id);
+        void Update(int id, UpdateBookDto dto);
+        void Delete(int id);
     }
     public class BookService : IBookService
     {
@@ -27,7 +28,9 @@ namespace SecondHandBook.Services
         {
             var book = _context.Books.FirstOrDefault(x => x.Id == id);
 
-            if(book == null) return null;
+            if(book == null)
+                throw new NotFoundException("Display not found"); 
+
 
             var result = _mapper.Map<BookDto>(book);
 
@@ -53,11 +56,12 @@ namespace SecondHandBook.Services
             return book.Id;
         }
 
-        public bool Update(int id, UpdateBookDto dto)
+        public void Update(int id, UpdateBookDto dto)
         {
             var book = _context.Books.FirstOrDefault(x => x.Id == id);
 
-            if (book is null) return false;
+            if (book is null)
+                throw new NotFoundException("Display not found");
 
             book.Title = dto.Title;
             book.Author = dto.Author;
@@ -67,25 +71,22 @@ namespace SecondHandBook.Services
             }
             else
             {
-                return false;
+                throw new NotFoundException("Category not found");
             }
             book.PublishDate = dto.PublishDate;
             book.PagesCount = dto.PagesCount;
 
             _context.SaveChanges();
-
-            return true;
         }
-        public bool Delete(int id)
+        public void Delete(int id)
         {
             var book = _context.Books.FirstOrDefault(x => x.Id == id);
 
-            if(book is null) return false;
+            if(book is null)
+                throw new NotFoundException("Display not found");
 
             _context.Books.Remove(book);
             _context.SaveChanges();
-
-            return true;
         }
     }
 }
