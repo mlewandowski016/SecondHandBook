@@ -12,6 +12,8 @@ using SecondHandBook.Models;
 using SecondHandBook;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
+using SecondHandBook.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,9 +51,12 @@ builder.Services.AddAuthentication(options =>
 
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHandler>();
+builder.Services.AddScoped<IUserContextService, UserContextService>();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IBookService, BookService>();
-builder.Services.AddScoped<IDisplayService, DisplayService>();
+builder.Services.AddScoped<IBookOfferService, BookOfferService>();
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddFluentValidationAutoValidation();
@@ -74,6 +79,12 @@ app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseAuthentication();
 
 app.UseHttpsRedirection();
+
+app.UseCors(builder =>
+               builder.AllowAnyOrigin()
+                      .AllowAnyMethod()
+                      .AllowAnyHeader()
+           );
 
 app.UseAuthorization();
 

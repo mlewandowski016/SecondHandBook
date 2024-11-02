@@ -2,13 +2,12 @@
 
 namespace SecondHandBook.Models
 {
-    public class DisplayDto
+    public class BookOfferDto
     {
         public int BookId { get; set; }
         public int GiverId { get; set; }
-        public int TakerId { get; set; }
+        public Book Book { get; set; }
+        public User User { get; set; }
         public DateTime DisplayDate { get; set; }
-        public bool? IsReserved { get; set; }
-        public bool? IsTaken { get; set; }
     }
 }

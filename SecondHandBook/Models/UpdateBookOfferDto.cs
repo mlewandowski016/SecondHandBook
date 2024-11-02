@@ -2,7 +2,7 @@
 
 namespace SecondHandBook.Models
 {
-    public class UpdateDisplayDto
+    public class UpdateBookOfferDto
     {
         public virtual Book Book { get; set; }
         public virtual User? Taker { get; set; }

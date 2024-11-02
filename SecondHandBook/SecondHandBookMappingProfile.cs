@@ -12,10 +12,11 @@ namespace SecondHandBook
 
             CreateMap<CreateBookDto, Book>();
 
-            CreateMap<Display, DisplayDto>();
+            CreateMap<BookOffer, BookOfferDto>();
 
-            CreateMap<CreateDisplayDto, Display>()
-                .ForMember(dest => dest.DisplayDate, opt => opt.Ignore());
+            CreateMap<CreateBookOfferDto, BookOffer>()
+                .ForMember(dest => dest.DateOfOffer, opt => opt.Ignore());
+                
 
         }
     }

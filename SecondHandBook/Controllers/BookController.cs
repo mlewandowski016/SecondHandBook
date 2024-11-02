@@ -1,7 +1,5 @@
-﻿using AutoMapper;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SecondHandBook.Entities;
 using SecondHandBook.Models;
 using SecondHandBook.Services;
 
@@ -9,6 +7,7 @@ namespace SecondHandBook.Controllers
 {
     [Route("api/book")]
     [ApiController]
+    [Authorize]
     public class BookController : ControllerBase
     {
         private readonly IBookService _bookService;
@@ -19,8 +18,9 @@ namespace SecondHandBook.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult CreateBook([FromBody] CreateBookDto dto)
-        {
+        { 
             var id = _bookService.Create(dto);
 
             return Created($"/api/book/{id}", null);
@@ -43,6 +43,7 @@ namespace SecondHandBook.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update([FromBody] UpdateBookDto dto, [FromRoute] int id)
         {
             _bookService.Update(id, dto);
@@ -51,6 +52,7 @@ namespace SecondHandBook.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete([FromRoute] int id)
         {
             _bookService.Delete(id);

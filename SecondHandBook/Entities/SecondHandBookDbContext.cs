@@ -11,6 +11,6 @@ namespace SecondHandBook.Entities
         public DbSet<User> Users { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<MyBook> MyBooks { get; set; }
-        public DbSet<Display> Displays { get; set; }
-    }
+        public DbSet<BookOffer> BookOffers { get; set; }
+    } 
 }

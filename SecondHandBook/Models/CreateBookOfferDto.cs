@@ -2,9 +2,8 @@
 
 namespace SecondHandBook.Models
 {
-    public class CreateDisplayDto
+    public class CreateBookOfferDto
     {
         public int BookId { get; set; }
-        public int GiverId { get; set; }
     }
 }

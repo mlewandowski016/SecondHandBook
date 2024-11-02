@@ -1,23 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SecondHandBook.Models;
 using SecondHandBook.Services;
+using System.Security.Claims;
 
 namespace SecondHandBook.Controllers
 {
 
     [Route("api/display")]
     [ApiController]
-    public class DisplayController : ControllerBase
+    public class AvailableBooksController : ControllerBase
     {
-        private readonly IDisplayService _displayService;
+        private readonly IBookOfferService _displayService;
 
-        public DisplayController(IDisplayService displayService)
+        public AvailableBooksController(IBookOfferService displayService)
         {
             _displayService = displayService;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<DisplayDto>> GetAll()
+        public ActionResult<IEnumerable<BookOfferDto>> GetAll()
         {
             var displaysDto = _displayService.GetAll();
 
@@ -25,7 +26,7 @@ namespace SecondHandBook.Controllers
         }
 
         [HttpGet("taker/{takerId}")]
-        public ActionResult<IEnumerable<DisplayDto>> GetByTakerId([FromRoute] int takerId)
+        public ActionResult<IEnumerable<BookOfferDto>> GetByTakerId([FromRoute] int takerId)
         {
             var displaysDto = _displayService.GetByTakerId(takerId);
 
@@ -33,7 +34,7 @@ namespace SecondHandBook.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<DisplayDto> GetById([FromRoute] int id)
+        public ActionResult<BookOfferDto> GetById([FromRoute] int id)
         {
             var result = _displayService.GetById(id);
 
@@ -41,7 +42,7 @@ namespace SecondHandBook.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateDisplay([FromBody] CreateDisplayDto dto)
+        public ActionResult CreateDisplay([FromBody] CreateBookOfferDto dto)
         {
             var id = _displayService.Create(dto);
 
@@ -49,7 +50,7 @@ namespace SecondHandBook.Controllers
         }
 
         [HttpPut("{displayId}/reserve")]
-        public ActionResult Reserve([FromRoute] int displayId, [FromBody] ReserveDisplayDto reserveDisplayDto)
+        public ActionResult Reserve([FromRoute] int displayId, [FromBody] ReserveBookOfferDto reserveDisplayDto)
         {
             _displayService.Reserve(displayId, reserveDisplayDto.TakerId);
 
@@ -57,9 +58,9 @@ namespace SecondHandBook.Controllers
         }
 
         [HttpPut("{displayId}/collect")]
-        public ActionResult Collect([FromRoute] int displayId, [FromBody] ReserveDisplayDto reserveDisplayDto)
+        public ActionResult Collect([FromRoute] int displayId, [FromBody] ReserveBookOfferDto reserveDisplayDto)
         {
-            _displayService.Take(displayId, reserveDisplayDto.TakerId);
+            _displayService.Collect(displayId, reserveDisplayDto.TakerId);
 
             return Ok();
         }

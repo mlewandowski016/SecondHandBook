@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SecondHandBook.Entities;
 
@@ -11,9 +12,10 @@ using SecondHandBook.Entities;
 namespace SecondHandBook.Migrations
 {
     [DbContext(typeof(SecondHandBookDbContext))]
-    partial class SecondHandBookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241023185327_user_update")]
+    partial class user_update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,10 +38,6 @@ namespace SecondHandBook.Migrations
 
                     b.Property<int>("Category")
                         .HasColumnType("int");
-
-                    b.Property<string>("ISBN")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("PagesCount")
                         .HasColumnType("int");
@@ -70,7 +68,7 @@ namespace SecondHandBook.Migrations
                     b.Property<DateTime>("DisplayDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("GiverId")
+                    b.Property<int>("GiverId")
                         .HasColumnType("int");
 
                     b.Property<bool?>("IsReserved")
@@ -165,7 +163,9 @@ namespace SecondHandBook.Migrations
 
                     b.HasOne("SecondHandBook.Entities.User", "Giver")
                         .WithMany()
-                        .HasForeignKey("GiverId");
+                        .HasForeignKey("GiverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SecondHandBook.Entities.User", "Taker")
                         .WithMany()

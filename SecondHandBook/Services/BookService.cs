@@ -28,8 +28,8 @@ namespace SecondHandBook.Services
         {
             var book = _context.Books.FirstOrDefault(x => x.Id == id);
 
-            if(book == null)
-                throw new NotFoundException("Display not found"); 
+            if (book == null)
+                throw new NotFoundException("Book not found"); 
 
 
             var result = _mapper.Map<BookDto>(book);
@@ -61,7 +61,7 @@ namespace SecondHandBook.Services
             var book = _context.Books.FirstOrDefault(x => x.Id == id);
 
             if (book is null)
-                throw new NotFoundException("Display not found");
+                throw new NotFoundException("Book not found");
 
             book.Title = dto.Title;
             book.Author = dto.Author;
@@ -82,8 +82,8 @@ namespace SecondHandBook.Services
         {
             var book = _context.Books.FirstOrDefault(x => x.Id == id);
 
-            if(book is null)
-                throw new NotFoundException("Display not found");
+            if (book is null)
+                throw new NotFoundException("Book not found");
 
             _context.Books.Remove(book);
             _context.SaveChanges();

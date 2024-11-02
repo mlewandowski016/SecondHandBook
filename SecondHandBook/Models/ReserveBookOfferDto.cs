@@ -1,6 +1,6 @@
 ﻿namespace SecondHandBook.Models
 {
-    public class ReserveDisplayDto
+    public class ReserveBookOfferDto
     {
         public int TakerId { get; set; }
     }

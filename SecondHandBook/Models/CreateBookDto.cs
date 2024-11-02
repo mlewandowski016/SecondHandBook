@@ -7,5 +7,6 @@
         public string Category { get; set; }
         public int? PagesCount { get; set; }
         public DateTime? PublishDate { get; set; }
+        public string ISBN { get; set; }
     }
 }
