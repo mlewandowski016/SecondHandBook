@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SecondHandBook.Entities;
 
@@ -11,9 +12,10 @@ using SecondHandBook.Entities;
 namespace SecondHandBook.Migrations
 {
     [DbContext(typeof(SecondHandBookDbContext))]
-    partial class SecondHandBookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241103164915_fixed book offer")]
+    partial class fixedbookoffer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,7 +75,7 @@ namespace SecondHandBook.Migrations
                     b.Property<int?>("GiverId")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("IsCollected")
+                    b.Property<bool?>("IsTaken")
                         .HasColumnType("bit");
 
                     b.Property<int?>("TakerId")

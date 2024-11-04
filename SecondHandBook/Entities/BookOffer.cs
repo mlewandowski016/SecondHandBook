@@ -10,7 +10,6 @@
         public virtual User Giver { get; set; }
         public virtual User? Taker { get; set; }
         public DateTime DateOfOffer { get; set; }
-        public bool? IsReserved { get; set; }
-        public bool? IsTaken { get; set; }
+        public bool? IsCollected { get; set; }
     }
 }

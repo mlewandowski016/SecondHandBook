@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SecondHandBook.Entities;
 
@@ -11,9 +12,10 @@ using SecondHandBook.Entities;
 namespace SecondHandBook.Migrations
 {
     [DbContext(typeof(SecondHandBookDbContext))]
-    partial class SecondHandBookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241102225040_changed-table-names")]
+    partial class changedtablenames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,7 +75,10 @@ namespace SecondHandBook.Migrations
                     b.Property<int?>("GiverId")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("IsCollected")
+                    b.Property<bool?>("IsReserved")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsTaken")
                         .HasColumnType("bit");
 
                     b.Property<int?>("TakerId")
@@ -150,52 +155,6 @@ namespace SecondHandBook.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("SecondHandBook.Models.BookOfferDto", b =>
-                {
-                    b.Property<string>("Author")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateOfOffer")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("GiverId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ISBN")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PagesCount")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("PublishDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("BookOfferDto");
                 });
 
             modelBuilder.Entity("SecondHandBook.Entities.BookOffer", b =>

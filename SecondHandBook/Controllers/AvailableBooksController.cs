@@ -1,69 +1,51 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SecondHandBook.Models;
 using SecondHandBook.Services;
-using System.Security.Claims;
 
 namespace SecondHandBook.Controllers
 {
 
-    [Route("api/display")]
+    [Route("api/offers")]
     [ApiController]
     public class AvailableBooksController : ControllerBase
     {
-        private readonly IBookOfferService _displayService;
+        private readonly IAvailableBookOfferService _bookOfferService;
 
-        public AvailableBooksController(IBookOfferService displayService)
+        public AvailableBooksController(IAvailableBookOfferService bookOfferService)
         {
-            _displayService = displayService;
+            _bookOfferService = bookOfferService;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<BookOfferDto>> GetAll()
+        public ActionResult<IEnumerable<BookOfferDto>> GetAll([FromQuery] SearchQuery query)
         {
-            var displaysDto = _displayService.GetAll();
+            var bookOfferDto = _bookOfferService.GetAll(query);
 
-            return Ok(displaysDto);
-        }
-
-        [HttpGet("taker/{takerId}")]
-        public ActionResult<IEnumerable<BookOfferDto>> GetByTakerId([FromRoute] int takerId)
-        {
-            var displaysDto = _displayService.GetByTakerId(takerId);
-
-            return Ok(displaysDto);
+            return Ok(bookOfferDto);
         }
 
         [HttpGet("{id}")]
         public ActionResult<BookOfferDto> GetById([FromRoute] int id)
         {
-            var result = _displayService.GetById(id);
+            var result = _bookOfferService.GetById(id);
 
             return Ok(result);
         }
 
         [HttpPost]
-        public ActionResult CreateDisplay([FromBody] CreateBookOfferDto dto)
+        public ActionResult CreateBookOffer([FromBody] CreateBookOfferDto dto)
         {
-            var id = _displayService.Create(dto);
+            var id = _bookOfferService.Create(dto);
 
-            return Created($"/api/display/{id}", null);
+            return Created($"/api/offers/{id}", null);
         }
 
-        [HttpPut("{displayId}/reserve")]
-        public ActionResult Reserve([FromRoute] int displayId, [FromBody] ReserveBookOfferDto reserveDisplayDto)
+        [HttpPut("{bookOfferId}/reserve")]
+        public ActionResult Reserve([FromRoute] int bookOfferId)
         {
-            _displayService.Reserve(displayId, reserveDisplayDto.TakerId);
-
-            return Ok();
-        }
-
-        [HttpPut("{displayId}/collect")]
-        public ActionResult Collect([FromRoute] int displayId, [FromBody] ReserveBookOfferDto reserveDisplayDto)
-        {
-            _displayService.Collect(displayId, reserveDisplayDto.TakerId);
+            _bookOfferService.Reserve(bookOfferId);
 
             return Ok();
         }
     }
-    
 }

@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from "../hooks/useAuth";
 import api from '../Api';
-import './login.css';
 
 function Login() {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     });
+    const [errorMessage, setErrorMessage] = useState(""); // Stan dla wiadomości o błędzie
 
     const handleChange = (e) => {
         setFormData({
@@ -21,31 +21,68 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrorMessage(""); // Resetuje komunikat o błędzie przed nową próbą logowania
         try {
             const response = await api.post('/user/login', formData);
             const token = response.data;
             await login(token);
-            alert('Zalogowano pomyślnie');
             localStorage.setItem('token', token);
             setFormData({ email: '', password: '' });
         } catch (error) {
+            // Sprawdza, czy odpowiedź zwrócona przez backend zawiera wiadomość o błędzie
+            if (error.response && error.response.data === "Invalid email or password") {
+                setErrorMessage("Nieprawidłowy email lub hasło."); // Ustawia komunikat o błędzie
+            } else {
+                setErrorMessage("Wystąpił błąd podczas logowania. Spróbuj ponownie.");
+            }
             console.error("Błąd logowania", error);
-            alert('Błąd podczas logowania');
         }
     };
 
     return (
-        <div className="login-container">
-            <form onSubmit={handleSubmit} className="login-form">
-                <label>Email:
-                    <input name="email" value={formData.email} onChange={handleChange} />
-                </label>
-                <label>Hasło:
-                    <input type="password" name="password" value={formData.password} onChange={handleChange} />
-                </label>
-                <button type="submit">Zaloguj się</button>
-                <p>Nie masz konta? <Link to="/register">Zarejestruj się</Link></p> {/* Link do rejestracji */}
-            </form>
+        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+            <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+                <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">Logowanie</h2>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                        <label className="block text-gray-700 text-sm font-medium mb-1">Email:</label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2 border rounded-lg text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Wprowadź email"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-gray-700 text-sm font-medium mb-1">Hasło:</label>
+                        <input
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2 border rounded-lg text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Wprowadź hasło"
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        className="w-full py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    >
+                        Zaloguj się
+                    </button>
+                    {errorMessage && ( // Wyświetla komunikat o błędzie, jeśli istnieje
+                        <p className="text-red-500 text-sm mt-2 text-center">{errorMessage}</p>
+                    )}
+                </form>
+                <p className="text-sm text-center text-gray-600 mt-4">
+                    Nie masz konta?{" "}
+                    <Link to="/register" className="text-blue-500 hover:underline">
+                        Zarejestruj się
+                    </Link>
+                </p>
+            </div>
         </div>
     );
 }
