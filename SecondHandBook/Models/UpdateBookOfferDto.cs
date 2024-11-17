@@ -4,9 +4,7 @@ namespace SecondHandBook.Models
 {
     public class UpdateBookOfferDto
     {
-        public virtual Book Book { get; set; }
-        public virtual User? Taker { get; set; }
-        public bool? IsReserved { get; set; }
-        public bool? IsTaken { get; set; }
+        public string OfferDescription { get; set; }
+        public List<IFormFile>? Images { get; set; }
     }
 }

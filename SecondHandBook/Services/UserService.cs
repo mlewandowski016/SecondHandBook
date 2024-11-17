@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using SecondHandBook.Entities;
 using SecondHandBook.Exceptions;
@@ -12,22 +13,24 @@ namespace SecondHandBook.Services
     public interface IUserService
     {
         void RegisterUser(RegisterUserDto dto);
-        string GenerateToken(LoginDto dto);
+        UserDto GenerateToken(LoginDto dto);
     }
     public class UserService : IUserService
     {
         private readonly SecondHandBookDbContext _context;
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly AuthenticationSettings _authenticationSettings;
+        private readonly IMapper _mapper;
 
-        public UserService(SecondHandBookDbContext context, IPasswordHasher<User> passwordHasher, AuthenticationSettings authenticationSettings)
+        public UserService(SecondHandBookDbContext context, IPasswordHasher<User> passwordHasher, AuthenticationSettings authenticationSettings, IMapper mapper)
         {
             _context = context;
             _passwordHasher = passwordHasher;
             _authenticationSettings = authenticationSettings;
+            _mapper = mapper;
         }
 
-        public string GenerateToken(LoginDto dto)
+        public UserDto GenerateToken(LoginDto dto)
         {
             var user = _context.Users.FirstOrDefault(u => u.Email == dto.Email);
             
@@ -56,7 +59,11 @@ namespace SecondHandBook.Services
                 signingCredentials: credenitals);
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            return tokenHandler.WriteToken(token);
+
+            var userDto = _mapper.Map<UserDto>(user);
+            userDto.Token = tokenHandler.WriteToken(token);
+
+            return userDto;
         }
 
         public void RegisterUser(RegisterUserDto dto)

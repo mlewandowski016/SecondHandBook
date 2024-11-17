@@ -13,11 +13,10 @@ namespace SecondHandBook.Entities
         public DbSet<Book> Books { get; set; }
         public DbSet<MyBook> MyBooks { get; set; }
         public DbSet<BookOffer> BookOffers { get; set; }
+        public DbSet<BookOfferImage> BookOfferImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<BookOfferDto>().HasNoKey();
-            base.OnModelCreating(modelBuilder);
         }
     } 
 }

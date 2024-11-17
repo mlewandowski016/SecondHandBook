@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SecondHandBook.Entities;
 using SecondHandBook.Models;
 using SecondHandBook.Services;
+using System.Security.Claims;
 
 namespace SecondHandBook.Controllers
 {
@@ -9,10 +11,12 @@ namespace SecondHandBook.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IUserContextService _userContextService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IUserContextService userContextService)
         {
             _userService = userService;
+            _userContextService = userContextService;
         }
 
         [HttpPost("register")]
@@ -26,7 +30,7 @@ namespace SecondHandBook.Controllers
         [HttpPost("login")]
         public ActionResult Login([FromBody]LoginDto dto)
         {
-            string token = _userService.GenerateToken(dto);
+            UserDto token = _userService.GenerateToken(dto);
 
             return Ok(token);
         }

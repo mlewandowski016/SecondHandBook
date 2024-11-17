@@ -33,11 +33,19 @@ namespace SecondHandBook.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateBookOffer([FromBody] CreateBookOfferDto dto)
+        public ActionResult CreateBookOffer([FromForm] CreateBookOfferDto dto)
         {
             var id = _bookOfferService.Create(dto);
 
             return Created($"/api/offers/{id}", null);
+        }
+
+        [HttpPut("edit/{bookOfferId}")]
+        public ActionResult EditOffer([FromRoute] int bookOfferId, [FromForm] UpdateBookOfferDto dto)
+        {
+            _bookOfferService.EditOffer(bookOfferId, dto);
+
+            return Ok();
         }
 
         [HttpPut("{bookOfferId}/reserve")]
@@ -46,6 +54,14 @@ namespace SecondHandBook.Controllers
             _bookOfferService.Reserve(bookOfferId);
 
             return Ok();
+        }
+
+        [HttpDelete("image/{imageId}")]
+        public ActionResult DeleteImage([FromRoute] int imageId)
+        {
+            _bookOfferService.DeleteImage(imageId);
+
+            return Ok();   
         }
     }
 }

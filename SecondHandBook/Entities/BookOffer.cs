@@ -9,6 +9,8 @@
         public virtual Book Book { get; set; }
         public virtual User Giver { get; set; }
         public virtual User? Taker { get; set; }
+        public string OfferDescription { get; set; }
+        public List<BookOfferImage> Images { get; set; }
         public DateTime DateOfOffer { get; set; }
         public bool? IsCollected { get; set; }
     }

@@ -1,4 +1,7 @@
-﻿using System.Security.Claims;
+﻿using AutoMapper;
+using SecondHandBook.Entities;
+using SecondHandBook.Models;
+using System.Security.Claims;
 
 namespace SecondHandBook.Services
 {
@@ -10,10 +13,14 @@ namespace SecondHandBook.Services
     public class UserContextService : IUserContextService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly SecondHandBookDbContext _secondHandBookDbContext;
+        private readonly IMapper _mapper;
 
-        public UserContextService(IHttpContextAccessor httpContextAccessor)
+        public UserContextService(IHttpContextAccessor httpContextAccessor, SecondHandBookDbContext secondHandBookDbContext, IMapper mapper)
         {
             _httpContextAccessor = httpContextAccessor;
+            _secondHandBookDbContext = secondHandBookDbContext;
+            _mapper = mapper;
         }
 
         public ClaimsPrincipal User => _httpContextAccessor.HttpContext?.User;

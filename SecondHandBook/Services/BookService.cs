@@ -8,6 +8,7 @@ namespace SecondHandBook.Services
     public interface IBookService
     {
         BookDto GetById(int id);
+        SearchListResult<BookDto> GetBookList(string searchPhrase);
         IEnumerable<BookDto> GetAll();
         int Create(CreateBookDto dto);
         void Update(int id, UpdateBookDto dto);
@@ -46,6 +47,22 @@ namespace SecondHandBook.Services
             return results;
         }
 
+        public SearchListResult<BookDto> GetBookList(string searchPhrase)
+        {
+            var filtr = _context
+                .Books
+                .Where(r => r.Title.ToLower().Contains(searchPhrase.ToLower())
+                || r.Author.ToLower().Contains(searchPhrase.ToLower())
+                || r.ISBN.Contains(searchPhrase.ToLower()))
+                .ToList();
+
+            var books = _mapper.Map<List<BookDto>>(filtr);
+
+            var result = new SearchListResult<BookDto>(books);
+
+            return result;
+        }
+
         public int Create(CreateBookDto dto)
         {
             var book = _mapper.Map<Book>(dto);
@@ -65,16 +82,9 @@ namespace SecondHandBook.Services
 
             book.Title = dto.Title;
             book.Author = dto.Author;
-            if (Enum.TryParse(dto.Category, true, out BookCategory category))
-            {
-                book.Category = category;
-            }
-            else
-            {
-                throw new NotFoundException("Category not found");
-            }
+            book.Category = dto.Category;
             book.PublishDate = dto.PublishDate;
-            book.PagesCount = dto.PagesCount;
+            book.PageCount = dto.PagesCount;
 
             _context.SaveChanges();
         }

@@ -8,7 +8,7 @@ function Login() {
         email: '',
         password: '',
     });
-    const [errorMessage, setErrorMessage] = useState(""); // Stan dla wiadomości o błędzie
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleChange = (e) => {
         setFormData({
@@ -21,17 +21,17 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrorMessage(""); // Resetuje komunikat o błędzie przed nową próbą logowania
+        setErrorMessage("");
         try {
             const response = await api.post('/user/login', formData);
-            const token = response.data;
-            await login(token);
-            localStorage.setItem('token', token);
+            const userData = response.data;
+            await login(userData);
+            localStorage.useLocalStorage('userData', userData);
+            
             setFormData({ email: '', password: '' });
         } catch (error) {
-            // Sprawdza, czy odpowiedź zwrócona przez backend zawiera wiadomość o błędzie
             if (error.response && error.response.data === "Invalid email or password") {
-                setErrorMessage("Nieprawidłowy email lub hasło."); // Ustawia komunikat o błędzie
+                setErrorMessage("Nieprawidłowy email lub hasło.");
             } else {
                 setErrorMessage("Wystąpił błąd podczas logowania. Spróbuj ponownie.");
             }
@@ -72,7 +72,7 @@ function Login() {
                     >
                         Zaloguj się
                     </button>
-                    {errorMessage && ( // Wyświetla komunikat o błędzie, jeśli istnieje
+                    {errorMessage && (
                         <p className="text-red-500 text-sm mt-2 text-center">{errorMessage}</p>
                     )}
                 </form>

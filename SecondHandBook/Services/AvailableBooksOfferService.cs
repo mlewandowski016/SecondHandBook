@@ -13,7 +13,8 @@ namespace SecondHandBook.Services
         PageResult<BookOfferDto> GetAll(SearchQuery searchQuery);
         BookOfferDto GetById(int bookOfferId);
         void Reserve(int bookOfferId);
-        
+        void EditOffer(int bookOfferId, UpdateBookOfferDto dto);
+        void DeleteImage(int imageId);
     }
     public class AvailableBooksOfferService : IAvailableBookOfferService
     {
@@ -30,32 +31,23 @@ namespace SecondHandBook.Services
 
         public PageResult<BookOfferDto> GetAll(SearchQuery searchQuery)
         {
-            /*var query = @"
-            SELECT bo.Id, bo.DateOfOffer, bo.BookId, b.Title, b.Author, b.Category, b.PagesCount, b.PublishDate, b.ISBN, bo.GiverId, u.Name, u.Lastname
-            FROM BookOffers bo
-            LEFT JOIN Books b ON bo.BookId = b.Id
-            LEFT JOIN Users u ON bo.GiverId = u.Id
-            AND bo.TakerId IS NULL";*/
-
-            //var offers = _context.Set<BookOfferDto>().FromSqlRaw(query).AsNoTracking().ToList();
-
-            var nonRaw = _context
+            var filtr = _context
                 .BookOffers
                 .Include(r => r.Book)
-                .Include(r => r.Giver)
+                .Include(r => r.Taker)
+                .Include(r => r.Images)
                 .Where(r => searchQuery.SearchPhrase == null
                 || r.Book.Title.ToLower().Contains(searchQuery.SearchPhrase.ToLower())
                 || r.Book.Author.ToLower().Contains(searchQuery.SearchPhrase.ToLower())
-                //|| r.Book.Category.ToString().ToLower().Contains(searchQuery.SearchPhrase.ToLower())
-                || r.Book.ISBN.ToLower().Contains(searchQuery.SearchPhrase.ToLower())
-                && r.TakerId == null);
+                || r.Book.ISBN.Contains(searchQuery.SearchPhrase.ToLower()))
+                .Where(r => r.Taker.Equals(null));
 
-            var offers = nonRaw
+            var offers = filtr
                 .Skip(searchQuery.PageSize * (searchQuery.PageNumber - 1))
                 .Take(searchQuery.PageSize)
                 .ToList();
 
-            var totalCount = nonRaw.Count();
+            var totalCount = filtr.Count();
 
             var offersDto = _mapper.Map<List<BookOfferDto>>(offers);
 
@@ -72,36 +64,75 @@ namespace SecondHandBook.Services
             bookOffer.TakerId = null;
             bookOffer.IsCollected = false;
 
+            bookOffer.Images = new List<BookOfferImage>();
+            foreach (var file in dto.Images)
+            {
+                if (file.Length > 0)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        file.CopyTo(ms);
+                        var image = new BookOfferImage
+                        {
+                            ImageData = ms.ToArray(),
+                            ContentType = file.ContentType
+                        };
+                        bookOffer.Images.Add(image);
+                    }
+                }
+            }
+
             _context.BookOffers.Add(bookOffer);
             _context.SaveChanges();
 
             return bookOffer.Id;
         }
-
         public BookOfferDto GetById(int bookOfferId)
+        {
+            var bookOffer = _context.BookOffers
+                .Include(r => r.Book)
+                .Include(r => r.Giver)
+                .Include(r => r.Images)
+                .FirstOrDefault(x => x.Id == bookOfferId);
+
+            if (bookOffer == null)
+                throw new NotFoundException("Book offer not found");
+
+            var result = _mapper.Map<BookOfferDto>(bookOffer);
+
+            return result;
+        }
+
+        public void EditOffer(int bookOfferId, UpdateBookOfferDto dto)
         {
             var bookOffer = _context.BookOffers.FirstOrDefault(x => x.Id == bookOfferId);
 
             if (bookOffer == null)
                 throw new NotFoundException("Book offer not found");
 
-            var query = @"
-            SELECT bo.Id, bo.DateOfOffer, bo.BookId, b.Title, b.Author, b.Category, b.PagesCount, b.PublishDate, b.ISBN, bo.GiverId, u.Name, u.Lastname
-            FROM BookOffers bo
-            LEFT JOIN Books b ON bo.BookId = b.Id
-            LEFT JOIN Users u ON bo.GiverId = u.Id
-            WHERE bo.Id = @bookOfferId
-            AND bo.TakerId IS NULL";
+            bookOffer.OfferDescription = dto.OfferDescription;
+            bookOffer.Images = new List<BookOfferImage>();
+            if (dto.Images != null)
+            {
+                foreach (var file in dto.Images)
+                {
+                    if (file.Length > 0)
+                    {
+                        using (var ms = new MemoryStream())
+                        {
+                            file.CopyTo(ms);
+                            var image = new BookOfferImage
+                            {
+                                ImageData = ms.ToArray(),
+                                ContentType = file.ContentType
+                            };
+                            bookOffer.Images.Add(image);
+                        }
+                    }
+                }
+            }
 
-            var result = _context.Set<BookOfferDto>()
-                .FromSqlRaw(query, new SqlParameter("@bookOfferId", bookOfferId))
-                .AsNoTracking()
-                .FirstOrDefault();
-
-            if (result == null)
-                throw new NotFoundException("Book offers not found.");
-
-            return result;
+            _context.SaveChanges();
         }
         public void Reserve(int bookOfferId)
         {
@@ -117,6 +148,17 @@ namespace SecondHandBook.Services
 
             bookOffer.TakerId = userId;
 
+            _context.SaveChanges();
+        }
+
+        public void DeleteImage(int imageId)
+        {
+            var image = _context.BookOfferImages.FirstOrDefault(x => x.Id == imageId);
+
+            if (image is null)
+                throw new NotFoundException("Image not found");
+
+            _context.BookOfferImages.Remove(image);
             _context.SaveChanges();
         }
     }

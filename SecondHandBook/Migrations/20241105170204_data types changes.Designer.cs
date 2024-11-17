@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SecondHandBook.Entities;
 
@@ -11,9 +12,10 @@ using SecondHandBook.Entities;
 namespace SecondHandBook.Migrations
 {
     [DbContext(typeof(SecondHandBookDbContext))]
-    partial class SecondHandBookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241105170204_data types changes")]
+    partial class datatypeschanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,10 +84,6 @@ namespace SecondHandBook.Migrations
                     b.Property<bool?>("IsCollected")
                         .HasColumnType("bit");
 
-                    b.Property<string>("OfferDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("TakerId")
                         .HasColumnType("int");
 
@@ -98,32 +96,6 @@ namespace SecondHandBook.Migrations
                     b.HasIndex("TakerId");
 
                     b.ToTable("BookOffers");
-                });
-
-            modelBuilder.Entity("SecondHandBook.Entities.BookOfferImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("BookOfferId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ContentType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("ImageData")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookOfferId");
-
-                    b.ToTable("BookOfferImages");
                 });
 
             modelBuilder.Entity("SecondHandBook.Entities.MyBook", b =>
@@ -188,6 +160,53 @@ namespace SecondHandBook.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("SecondHandBook.Models.BookOfferDto", b =>
+                {
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateOfOffer")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GiverId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Lastname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PagesCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("PublishDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("BookOfferDto");
+                });
+
             modelBuilder.Entity("SecondHandBook.Entities.BookOffer", b =>
                 {
                     b.HasOne("SecondHandBook.Entities.Book", "Book")
@@ -211,17 +230,6 @@ namespace SecondHandBook.Migrations
                     b.Navigation("Taker");
                 });
 
-            modelBuilder.Entity("SecondHandBook.Entities.BookOfferImage", b =>
-                {
-                    b.HasOne("SecondHandBook.Entities.BookOffer", "BookOffer")
-                        .WithMany("Images")
-                        .HasForeignKey("BookOfferId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BookOffer");
-                });
-
             modelBuilder.Entity("SecondHandBook.Entities.MyBook", b =>
                 {
                     b.HasOne("SecondHandBook.Entities.Book", "Book")
@@ -239,11 +247,6 @@ namespace SecondHandBook.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Owner");
-                });
-
-            modelBuilder.Entity("SecondHandBook.Entities.BookOffer", b =>
-                {
-                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

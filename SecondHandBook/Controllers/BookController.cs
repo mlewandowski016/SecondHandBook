@@ -27,11 +27,11 @@ namespace SecondHandBook.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<BookDto>> GetAll()
+        public ActionResult<IEnumerable<BookDto>> GetAll([FromQuery] string searchPhrase)
         {
-            var booksDto = _bookService.GetAll();
+            var bookOfferDto = _bookService.GetBookList(searchPhrase);
 
-            return Ok(booksDto);
+            return Ok(bookOfferDto);
         }
 
         [HttpGet("{id}")]
