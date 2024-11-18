@@ -22,7 +22,7 @@ export const HomePage = () => {
           },
         });
 
-        console.log('response.data :>> ', response.data);
+        //console.log('response :>> ', response);
         const data = response.data;
         setBooks(data.items);
         setTotalPages(data.totalPages);
@@ -38,7 +38,7 @@ export const HomePage = () => {
 
   const handleSearchChange = (event) => {
     setSearchPhrase(event.target.value);
-    setPageNumber(1); // Resetuj numer strony po zmianie frazy wyszukiwania
+    setPageNumber(1);
   };
 
   const handleNextPage = () => {
@@ -93,7 +93,7 @@ export const HomePage = () => {
           ))}
         </div>
 
-        <div className="flex justify-between items-center mt-6">
+        <div className="flex justify-center items-center gap-4 mt-6 mb-6">
           <button
             onClick={handlePreviousPage}
             disabled={pageNumber === 1}
@@ -110,6 +110,7 @@ export const HomePage = () => {
             Następna
           </button>
         </div>
+
       </main>
     </div>
   );

@@ -12,6 +12,7 @@ export default function BookDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { user } = useAuth();
+  
   useEffect(() => {
     const fetchBook = async () => {
       try {
@@ -67,7 +68,7 @@ export default function BookDetails() {
   }
 
   const isCreator = user && user.id === offer.giverId;
-  const isReservedByUser = user && user.id === offer.takerIdr;
+  const isReservedByUser = user && user.id === offer.takerId;
   const isAvailable = offer.takerId === 0 && !offer.isCollected;
 
   return (

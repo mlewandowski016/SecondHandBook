@@ -1,6 +1,4 @@
-﻿using SecondHandBook.Entities;
-
-namespace SecondHandBook.Models
+﻿namespace SecondHandBook.Models
 {
     public class BookOfferDto
     {

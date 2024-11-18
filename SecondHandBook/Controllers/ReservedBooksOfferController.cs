@@ -23,14 +23,6 @@ namespace SecondHandBook.Controllers
             return Ok(reservedBooksOffer);
         }
 
-        [HttpGet("{bookOfferId}")]
-        public ActionResult<BookOfferDto> GetReseredById(int bookOfferId)
-        {
-            var reservedBooksOffer = _reservedBooksOfferService.GetReservedById(bookOfferId);
-
-            return Ok(reservedBooksOffer);
-        }
-
         [HttpPut("{bookOfferId}/collect")]
         public ActionResult Collect(int bookOfferId)
         {

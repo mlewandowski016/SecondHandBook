@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using SecondHandBook.Entities;
-using SecondHandBook.Models;
 using System.Security.Claims;
 
 namespace SecondHandBook.Services

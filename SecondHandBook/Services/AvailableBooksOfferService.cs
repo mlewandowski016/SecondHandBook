@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SecondHandBook.Entities;
 using SecondHandBook.Exceptions;
@@ -34,6 +33,7 @@ namespace SecondHandBook.Services
             var filtr = _context
                 .BookOffers
                 .Include(r => r.Book)
+                .Include(r => r.Giver)
                 .Include(r => r.Taker)
                 .Include(r => r.Images)
                 .Where(r => searchQuery.SearchPhrase == null

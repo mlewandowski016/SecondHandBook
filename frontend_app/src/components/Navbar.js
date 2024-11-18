@@ -13,13 +13,25 @@ export const Navbar = () => {
     const isUser = () => {
         if (user) {
             return (
-                <div className="space-x-4">
-                    <button onClick={handleLogout} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                <div className="flex space-x-4 items-center">
+                    <Link to="/new-offer" className="text-gray-700 hover:text-blue-600">
+                        Add Offer
+                    </Link>
+                    <Link to="/reserved-offers" className="text-gray-700 hover:text-blue-600">
+                        Reserved Offers
+                    </Link>
+                    <Link to="/my-books" className="text-gray-700 hover:text-blue-600">
+                        My Books
+                    </Link>
+                    <button
+                        onClick={handleLogout}
+                        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                    >
                         Logout
                     </button>
                 </div>
             );
-        };
+        }
     };
 
     return (
