@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SecondHandBook.Entities;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SecondHandBook.Models;
 using SecondHandBook.Services;
 
@@ -15,28 +15,12 @@ namespace SecondHandBook.Controllers
             _myBookService = myBookService;
         }
 
-        [HttpPost]
-        public ActionResult<MyBook> Create(int bookId, int userId)
-        {
-            var myBook = _myBookService.AddBookToMyLibrary(bookId, userId);
-
-            return Created($"/api/book/{myBook.Id}", null);
-        }
-
         [HttpGet]
         public ActionResult<IEnumerable<MyBookDto>> GetAll()
         {
             var myBooks = _myBookService.GetAll();
 
             return Ok(myBooks);
-        }
-
-        [HttpGet("{bookId}")]
-        public ActionResult<MyBookDto> GetByBookId(int bookId)
-        {
-            var myBook = _myBookService.GetByBookId(bookId);
-
-            return Ok(myBook);
         }
 
         [HttpDelete("{bookId}")]

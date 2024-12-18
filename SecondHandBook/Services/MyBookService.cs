@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SecondHandBook.Entities;
 using SecondHandBook.Exceptions;
@@ -8,74 +8,40 @@ namespace SecondHandBook.Services
 {
     public interface IMyBookService
     {
-        MyBook AddBookToMyLibrary(int bookId, int userId);
         IEnumerable<MyBookDto> GetAll();
-        MyBookDto GetByBookId(int bookId);
         void Delete(int bookId);
     }
     public class MyBookService : IMyBookService
     {
         private readonly SecondHandBookDbContext _context;
         private readonly IUserContextService _userContextService;
+        private readonly IMapper _mapper;
 
-        public MyBookService(SecondHandBookDbContext context, IUserContextService userContextService)
+        public MyBookService(SecondHandBookDbContext context, IUserContextService userContextService, IMapper mapper)
         {
             _context = context;
             _userContextService = userContextService;
-        }
-
-        public MyBook AddBookToMyLibrary(int bookId, int userId)
-        {
-            var myBook = new MyBook();
-            myBook.BookId = bookId;
-            myBook.OwnerId = userId;
-            myBook.AddedDate = DateTime.Now.Date;
-            _context.MyBooks.Add(myBook);
-
-            return myBook;
+            _mapper = mapper;
         }
 
         public IEnumerable<MyBookDto> GetAll()
         {
             var userId = _userContextService.GetUserId;
-            var query = @"
-            SELECT mb.Id, b.Title, b.Author, b.Category, b.PagesCount, b.PublishDate, b.ISBN
-            FROM MyBooks mb
-            LEFT JOIN Books b ON bo.BookId = b.Id
-            LEFT JOIN Users u ON bo.GiverId = u.Id
-            WHERE mb.OwnerId = @userId";
 
-            var result = _context.Set<MyBookDto>()
-                .FromSqlRaw(query, new SqlParameter("@userId", userId))
-                .AsNoTracking()
+            if (userId is null)
+                throw new NotFoundException("User not found");
+
+            var myBooks = _context.MyBooks
+                .Include(r => r.Book)
+                .Where(r => r.OwnerId == userId)
                 .ToList();
 
-            if (result == null)
-                throw new NotFoundException("Could not find any books in your library");
+            if (myBooks is null)
+                throw new NotFoundException("Books not found in yout library");
 
-            return result;
-        }
+            var results = _mapper.Map<List<MyBookDto>>(myBooks);
 
-        public MyBookDto GetByBookId(int bookId)
-        {
-            var userId = _userContextService.GetUserId;
-            var query = @"
-            SELECT mb.Id, b.Title, b.Author, b.Category, b.PagesCount, b.PublishDate, b.ISBN
-            FROM MyBooks mb
-            LEFT JOIN Books b ON bo.BookId = b.Id
-            LEFT JOIN Users u ON bo.GiverId = u.Id
-            WHERE mb.OwnerId = @userId
-            AND mb.BookId = @bookId";
-
-            var result = _context.Set<MyBookDto>()
-                .FromSqlRaw(query, new SqlParameter("@userId", userId), new SqlParameter("@bookId", bookId))
-                .AsNoTracking()
-                .FirstOrDefault();
-
-            if (result == null)
-                throw new NotFoundException("Could not find any books in your library");
-
-            return result;
+            return results;
         }
 
         public void Delete(int bookId)

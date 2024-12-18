@@ -12,7 +12,7 @@ export default function BookDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { user } = useAuth();
-  
+  console.log('user :>> ', user);
   useEffect(() => {
     const fetchBook = async () => {
       try {

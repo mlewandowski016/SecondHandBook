@@ -61,6 +61,13 @@ namespace SecondHandBook.Services
             if (bookOffer.TakerId != userId)
                 throw new BadRequestException("This book is reserved by someone else");
 
+            var myBook = new MyBook();
+            myBook.BookId = bookOfferId;
+            myBook.OwnerId = userId;
+            myBook.AddedDate = DateTime.UtcNow;
+
+            _context.MyBooks.Add(myBook);
+
             bookOffer.IsCollected = true;
 
             _context.SaveChanges();

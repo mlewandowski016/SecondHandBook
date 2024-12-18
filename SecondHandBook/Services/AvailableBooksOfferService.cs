@@ -40,7 +40,8 @@ namespace SecondHandBook.Services
                 || r.Book.Title.ToLower().Contains(searchQuery.SearchPhrase.ToLower())
                 || r.Book.Author.ToLower().Contains(searchQuery.SearchPhrase.ToLower())
                 || r.Book.ISBN.Contains(searchQuery.SearchPhrase.ToLower()))
-                .Where(r => r.Taker.Equals(null));
+                .Where(r => r.Taker.Equals(null))
+                .OrderByDescending(r => r.DateOfOffer);
 
             var offers = filtr
                 .Skip(searchQuery.PageSize * (searchQuery.PageNumber - 1))

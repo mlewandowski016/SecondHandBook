@@ -34,6 +34,14 @@ namespace SecondHandBook
                 .ForMember(dest => dest.DateOfOffer, opt => opt.Ignore())
                 .ForMember(dest => dest.Images, opt => opt.Ignore());
 
+            CreateMap<MyBook, MyBookDto>()
+                .ForMember(x => x.Title, y => y.MapFrom(z => z.Book.Title))
+                .ForMember(x => x.Author, y => y.MapFrom(z => z.Book.Author))
+                .ForMember(x => x.Category, y => y.MapFrom(z => z.Book.Category))
+                .ForMember(x => x.PagesCount, y => y.MapFrom(z => z.Book.PageCount))
+                .ForMember(x => x.PublishDate, y => y.MapFrom(z => z.Book.PublishDate))
+                .ForMember(x => x.ISBN, y => y.MapFrom(z => z.Book.ISBN));
+
             CreateMap<User, UserDto>();
         }
     }

@@ -74,10 +74,13 @@ export const HomePage = () => {
                 <div className="sm:w-1/2 p-4 flex flex-col justify-between">
                   <div>
                     <h2 className="text-lg font-semibold mb-2 text-gray-800 line-clamp-2">{book.title}</h2>
-                    <p className="text-sm text-gray-600 mb-1">
+                    <p className="text-sm text-gray-600 mb-2">
                       <span className="font-medium">Author:</span> {book.author}
                     </p>
-                    <p className="text-sm text-gray-600 mb-3">
+                    <p className="text-sm text-gray-600 mb-2">
+                      <span className="font-medium">Category:</span> {book.category}
+                    </p>
+                    <p className="text-sm text-gray-600 mb-2">
                       <span className="font-medium">Owner:</span> {book.name} {book.lastname}
                     </p>
                   </div>
@@ -99,15 +102,15 @@ export const HomePage = () => {
             disabled={pageNumber === 1}
             className="bg-gray-200 text-gray-700 px-4 py-2 rounded disabled:opacity-50"
           >
-            Poprzednia
+            Previous
           </button>
-          <span>Strona {pageNumber} z {totalPages}</span>
+          <span>Page {pageNumber} of {totalPages}</span>
           <button
             onClick={handleNextPage}
             disabled={pageNumber === totalPages}
             className="bg-gray-200 text-gray-700 px-4 py-2 rounded disabled:opacity-50"
           >
-            Następna
+            Next
           </button>
         </div>
 

@@ -1033,3 +1033,93 @@
 2024-11-18 13:04:49.5713 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
 2024-11-18 13:04:49.5875 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
 2024-11-18 13:04:49.6018 Info Configuration initialized.
+2024-11-18 20:01:46.2327 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-18 20:01:46.2384 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-18 20:01:46.2511 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-18 20:01:46.2511 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-18 20:01:46.2836 Info Configuration initialized.
+2024-11-18 20:05:23.4475 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-18 20:05:23.4550 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-18 20:05:23.4712 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-18 20:05:23.4921 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-18 20:05:23.5139 Info Configuration initialized.
+2024-11-18 20:11:57.9156 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-18 20:11:57.9230 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-18 20:11:57.9439 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-18 20:11:57.9721 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-18 20:11:58.0067 Info Configuration initialized.
+2024-11-18 21:37:26.7853 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-18 21:37:26.7853 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-18 21:37:26.8066 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-18 21:37:26.8259 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-18 21:37:26.8442 Info Configuration initialized.
+2024-11-18 21:39:52.4998 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-18 21:39:52.5067 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-18 21:39:52.5209 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-18 21:39:52.5482 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-18 21:39:52.5782 Info Configuration initialized.
+2024-11-18 21:41:29.5484 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-18 21:41:29.5484 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-18 21:41:29.5661 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-18 21:41:29.5813 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-18 21:41:29.5951 Info Configuration initialized.
+2024-11-18 21:44:28.8497 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-18 21:44:28.8497 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-18 21:44:28.8735 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-18 21:44:28.9006 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-18 21:44:28.9297 Info Configuration initialized.
+2024-11-18 21:52:02.9089 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-18 21:52:02.9089 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-18 21:52:02.9379 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-18 21:52:02.9651 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-18 21:52:02.9899 Info Configuration initialized.
+2024-11-18 21:58:26.9946 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-18 21:58:27.0010 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-18 21:58:27.0010 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-18 21:58:27.0303 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-18 21:58:27.0498 Info Configuration initialized.
+2024-11-18 21:58:47.8513 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-18 21:58:47.8513 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-18 21:58:47.8705 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-18 21:58:47.8894 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-18 21:58:47.9067 Info Configuration initialized.
+2024-11-18 22:03:04.5544 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-18 22:03:04.5544 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-18 22:03:04.5715 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-18 22:03:04.5886 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-18 22:03:04.6074 Info Configuration initialized.
+2024-11-18 22:21:16.4602 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-18 22:21:16.4602 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-18 22:21:16.4761 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-18 22:21:16.4917 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-18 22:21:16.5167 Info Configuration initialized.
+2024-11-18 22:25:34.9575 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-18 22:25:34.9575 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-18 22:25:34.9760 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-18 22:25:34.9925 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-18 22:25:35.0116 Info Configuration initialized.
+2024-11-19 08:06:51.0852 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-19 08:06:51.0852 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-19 08:06:51.1087 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-19 08:06:51.1236 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-19 08:06:51.1392 Info Configuration initialized.
+2024-11-19 08:12:45.9984 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-19 08:12:46.0042 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-19 08:12:46.0178 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-19 08:12:46.0366 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-19 08:12:46.0525 Info Configuration initialized.
+2024-11-22 14:42:49.1871 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-22 14:42:49.1929 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-22 14:42:49.2055 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-22 14:42:49.2199 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-22 14:42:49.2199 Info Configuration initialized.
+2024-11-24 16:57:35.3062 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-24 16:57:35.3145 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-24 16:57:35.3145 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-24 16:57:35.3538 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-24 16:57:35.3765 Info Configuration initialized.
+2024-11-24 17:03:03.8248 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-11-24 17:03:03.8350 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2024-11-24 17:03:03.8603 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-11-24 17:03:03.8896 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2024-11-24 17:03:03.9212 Info Configuration initialized.

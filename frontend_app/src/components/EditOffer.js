@@ -131,18 +131,18 @@ export default function EditOffer() {
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-6 shadow-md rounded-lg">
-      <h2 className="text-xl font-bold mb-4">Edytuj ogłoszenie</h2>
+      <h2 className="text-xl font-bold mb-4">Edit offer</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
-            Opis
+            Description
           </label>
           <textarea
             id="description"
             name="description"
             rows="4"
             className="w-full p-2 border border-gray-300 rounded-md"
-            placeholder="Zaktualizuj opis ogłoszenia"
+            placeholder="Update your offer description"
             value={offerData.offerDescription}
             onChange={handleDescriptionChange}
           ></textarea>
@@ -152,7 +152,7 @@ export default function EditOffer() {
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Dodaj nowe zdjęcia
+            Add new images
           </label>
           <input
             type="file"
@@ -198,7 +198,7 @@ export default function EditOffer() {
             type="submit"
             className="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition duration-300"
           >
-            Zaktualizuj ogłoszenie
+            Update offer
           </button>
         </div>
       </form>

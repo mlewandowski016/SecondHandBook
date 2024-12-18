@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import api from '../Api';
 import ImageInCard from "./ImageInCard";
 
-export const ReservedOffers = () => {
+export default function ReservedOffers() {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await api.get("reservedOffers");
+                const response = await api.get("reservedOffers")
 
                 console.log('response :>> ', response);
                 const data = response.data;
@@ -21,7 +20,7 @@ export const ReservedOffers = () => {
         };
 
         fetchBooks();
-    });
+    }, []);
 
     if (!books) {
         return ("");
@@ -67,5 +66,3 @@ export const ReservedOffers = () => {
         </div>
     );
 };
-
-export default ReservedOffers;

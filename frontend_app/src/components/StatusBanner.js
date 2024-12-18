@@ -11,8 +11,8 @@ export default function StatusBanner({ isAvailable, isReservedByUser, isCollecte
             </svg>
           </div>
           <div>
-            <p className="font-bold">Ogłoszenie zakończone</p>
-            <p className="text-sm">Ta książka została już odebrana i nie jest dostępna.</p>
+            <p className="font-bold">Offer completed</p>
+            <p className="text-sm">This book has already been received and is not available.</p>
           </div>
         </div>
       </div>
@@ -29,8 +29,8 @@ export default function StatusBanner({ isAvailable, isReservedByUser, isCollecte
             </svg>
           </div>
           <div>
-            <p className="font-bold">Książka zarezerwowana</p>
-            <p className="text-sm">Ta książka jest aktualnie zarezerwowana przez innego użytkownika.</p>
+            <p className="font-bold">Book reserved</p>
+            <p className="text-sm">This book is currently reserved by another user.</p>
           </div>
         </div>
       </div>

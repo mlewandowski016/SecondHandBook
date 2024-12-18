@@ -11,7 +11,8 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AuthProvider } from "./hooks/useAuth";
 import { RedirectIfLoggedRoute } from './components/RedirectIfLoggedRoute';
 import EditOffer from './components/EditOffer';
-import { ReservedOffers } from './components/ReservedOffers';
+import ReservedOffers from './components/ReservedOffers';
+import MyBooks from './components/MyBooks';
 
 function App() {
     return (
@@ -52,6 +53,11 @@ function App() {
                 <Route path="/reserved-offers" element={
                     <ProtectedRoute>
                         <ReservedOffers />
+                    </ProtectedRoute>
+                } />
+                <Route path="/my-books" element={
+                    <ProtectedRoute>
+                        <MyBooks />
                     </ProtectedRoute>
                 } />
             </Routes>

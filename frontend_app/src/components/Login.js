@@ -24,10 +24,8 @@ function Login() {
         setErrorMessage("");
         try {
             const response = await api.post('/user/login', formData);
-            const userData = response.data;
-            await login(userData);
-            localStorage.useLocalStorage('userData', userData);
-            
+            var token = response.data.token.replace(/[""]+/g, '')
+            await login(response.data, token);
             setFormData({ email: '', password: '' });
         } catch (error) {
             if (error.response && error.response.data === "Invalid email or password") {

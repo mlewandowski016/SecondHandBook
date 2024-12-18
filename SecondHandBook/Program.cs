@@ -12,8 +12,6 @@ using SecondHandBook.Models;
 using SecondHandBook;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.AspNetCore.Authorization;
-using SecondHandBook.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +19,6 @@ builder.Logging.ClearProviders();
 builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
 builder.Host.UseNLog();
 
-// Add services to the container.
 
 builder.Services.AddControllers();
 
@@ -51,13 +48,13 @@ builder.Services.AddAuthentication(options =>
 
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-builder.Services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHandler>();
 builder.Services.AddScoped<IUserContextService, UserContextService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IAvailableBookOfferService, AvailableBooksOfferService>();
 builder.Services.AddScoped<IReservedBooksOfferService, ReservedBooksOfferService>();
+builder.Services.AddScoped<IMyBookService, MyBookService>();
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddFluentValidationAutoValidation();
