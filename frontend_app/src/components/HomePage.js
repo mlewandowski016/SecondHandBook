@@ -27,7 +27,7 @@ export const HomePage = () => {
         setBooks(data.items);
         setTotalPages(data.totalPages);
       } catch (error) {
-        console.error("Błąd podczas pobierania książek:", error);
+        console.error("Error while fetching books:", error);
       }
     };
 

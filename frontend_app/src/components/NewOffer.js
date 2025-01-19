@@ -27,7 +27,7 @@ export default function NewOffer() {
           console.log('response :>> ', response.data);
           setSearchResults(response.data.items);
         } catch (error) {
-          console.error("Błąd podczas pobierania książek:", error);
+          console.error("Error while fetching books:", error);
         }
       };
       setIsSearching(true);
@@ -47,11 +47,15 @@ export default function NewOffer() {
   };
 
   const handleImageUpload = (event) => {
-    setFiles(event.target.files);
-    const newImages = files.map(file => URL.createObjectURL(file));
+    const newFiles = Array.from(event.target.files);
+    
+    const newImages = newFiles.map(file => URL.createObjectURL(file));
+  
+    setFiles(prevFiles => [...prevFiles, ...newFiles]);
+  
     setOfferData(prevData => ({
       ...prevData,
-      images: [...prevData.images, ...newImages]
+      images: [...prevData.images, ...newImages],
     }));
   };
 
@@ -83,10 +87,10 @@ export default function NewOffer() {
         }
       });
       console.log('response :>> ', response);
-      alert('Oferta została utworzona!');
+      alert('The offer was created!');
       navigate('/');
     } catch (error) {
-      console.error("Błąd podczas tworzenia oferty:", error);
+      console.error("Error when creating an offer:", error);
     }
   };
 
@@ -144,7 +148,7 @@ export default function NewOffer() {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Dodaj zdjęcia
+              Add photos
             </label>
             <input
               type="file"

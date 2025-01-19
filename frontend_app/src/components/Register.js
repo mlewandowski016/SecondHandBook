@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Importujemy Link z react-router-dom
+import { Link } from 'react-router-dom';
 import api from '../Api';
 
 function Register() {
@@ -24,7 +24,7 @@ function Register() {
         e.preventDefault();
         try {
             await api.post('/user/register', formData);
-            alert('Rejestracja zakończona sukcesem');
+            alert('Registration successfully completed');
             setFormData({
                 email: '',
                 password: '',
@@ -35,15 +35,15 @@ function Register() {
                 roleId: 0,
             });
         } catch (error) {
-            console.error("Błąd rejestracji", error);
-            alert('Błąd podczas rejestracji');
+            console.error("Registration error", error);
+            alert('Registration error');
         }
     };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
-                <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">Rejestracja</h2>
+                <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">Register</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label className="block text-gray-700 text-sm font-medium mb-1">Email:</label>
@@ -53,83 +53,72 @@ function Register() {
                             value={formData.email}
                             onChange={handleChange}
                             className="w-full px-4 py-2 border rounded-lg text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Wprowadź email"
+                            placeholder="Enter email"
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700 text-sm font-medium mb-1">Hasło:</label>
+                        <label className="block text-gray-700 text-sm font-medium mb-1">Password:</label>
                         <input
                             type="password"
                             name="password"
                             value={formData.password}
                             onChange={handleChange}
                             className="w-full px-4 py-2 border rounded-lg text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Wprowadź hasło"
+                            placeholder="Enter password"
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700 text-sm font-medium mb-1">Potwierdź hasło:</label>
+                        <label className="block text-gray-700 text-sm font-medium mb-1">Confirm password:</label>
                         <input
                             type="password"
                             name="confirmPassword"
                             value={formData.confirmPassword}
                             onChange={handleChange}
                             className="w-full px-4 py-2 border rounded-lg text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Potwierdź hasło"
+                            placeholder="Confirm password"
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700 text-sm font-medium mb-1">Imię:</label>
+                        <label className="block text-gray-700 text-sm font-medium mb-1">Name:</label>
                         <input
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
                             className="w-full px-4 py-2 border rounded-lg text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Wprowadź imię"
+                            placeholder="Enter name"
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700 text-sm font-medium mb-1">Nazwisko:</label>
+                        <label className="block text-gray-700 text-sm font-medium mb-1">Lastname:</label>
                         <input
                             name="lastname"
                             value={formData.lastname}
                             onChange={handleChange}
                             className="w-full px-4 py-2 border rounded-lg text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Wprowadź nazwisko"
+                            placeholder="Enter lastname"
                         />
                     </div>
                     <div>
-                        <label className="block text-gray-700 text-sm font-medium mb-1">Numer telefonu:</label>
+                        <label className="block text-gray-700 text-sm font-medium mb-1">Phone number:</label>
                         <input
                             name="phoneNumber"
                             value={formData.phoneNumber}
                             onChange={handleChange}
                             className="w-full px-4 py-2 border rounded-lg text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Wprowadź numer telefonu"
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-gray-700 text-sm font-medium mb-1">Rola:</label>
-                        <input
-                            type="number"
-                            name="roleId"
-                            value={formData.roleId}
-                            onChange={handleChange}
-                            className="w-full px-4 py-2 border rounded-lg text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Wprowadź rolę"
+                            placeholder="Enter phone number"
                         />
                     </div>
                     <button
                         type="submit"
                         className="w-full py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
-                        Zarejestruj
+                        Sign in
                     </button>
                 </form>
                 <p className="text-sm text-center text-gray-600 mt-4">
-                    Masz już konto?{" "}
+                    You already have an account?{" "}
                     <Link to="/login" className="text-blue-500 hover:underline">
-                        Zaloguj się
+                        Log in
                     </Link>
                 </p>
             </div>

@@ -14,7 +14,7 @@ export const MyBooks = () => {
                 const data = response.data;
                 setBooks(data);
             } catch (error) {
-                console.error("Błąd podczas pobierania książek:", error);
+                console.error("Error while fetching books:", error);
             }
         };
 

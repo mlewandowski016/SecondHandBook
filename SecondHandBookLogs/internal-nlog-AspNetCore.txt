@@ -1123,3 +1123,33 @@
 2024-11-24 17:03:03.8603 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
 2024-11-24 17:03:03.8896 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
 2024-11-24 17:03:03.9212 Info Configuration initialized.
+2025-01-12 13:04:54.7341 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-01-12 13:04:54.7445 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2025-01-12 13:04:54.7590 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-01-12 13:04:54.7755 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2025-01-12 13:04:54.7920 Info Configuration initialized.
+2025-01-18 20:56:04.9620 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-01-18 20:56:04.9620 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2025-01-18 20:56:04.9821 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-01-18 20:56:05.0021 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2025-01-18 20:56:05.0263 Info Configuration initialized.
+2025-01-18 21:12:24.2853 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-01-18 21:12:24.2853 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2025-01-18 21:12:24.3013 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-01-18 21:12:24.3162 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2025-01-18 21:12:24.3320 Info Configuration initialized.
+2025-01-19 14:39:14.8190 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-01-19 14:39:14.8190 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2025-01-19 14:39:14.8398 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-01-19 14:39:14.8583 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2025-01-19 14:39:14.8772 Info Configuration initialized.
+2025-01-19 14:45:21.9680 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-01-19 14:45:21.9732 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2025-01-19 14:45:21.9732 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-01-19 14:45:21.9973 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2025-01-19 14:45:22.0114 Info Configuration initialized.
+2025-01-19 14:46:35.5413 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-01-19 14:46:35.5413 Info Registered target NLog.Targets.FileTarget(Name=exceptions)
+2025-01-19 14:46:35.5589 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2025-01-19 14:46:35.5774 Info Validating config: TargetNames=allfile, exceptions, ConfigItems=44, FilePath=C:\SecondHandBook\SecondHandBook\NLog.config
+2025-01-19 14:46:35.5968 Info Configuration initialized.

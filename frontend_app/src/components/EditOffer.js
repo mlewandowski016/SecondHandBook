@@ -33,8 +33,8 @@ export default function EditOffer() {
         });
         console.log('response.data :>> ', response.data);
       } catch (error) {
-        console.error("Błąd podczas pobierania danych ogłoszenia:", error);
-        alert("Nie udało się załadować danych ogłoszenia.");
+        console.error("Error while fetching offer:", error);
+        alert("Failed to load offer's data.");
         navigate('/');
       }
     };
@@ -72,17 +72,17 @@ export default function EditOffer() {
 
   const handleRemoveImage = async (image, index) => {
     if (offerData.images.length === 1) {
-      setRemoveImageError('Ogłoszenie musi zawierać przynajmniej jedno zdjęcie.');
+      setRemoveImageError('The offer must include at least one photo.');
       return;
     }
 
     if (image.isFromAPI) {
       try {
         await api.delete(`/offers/image/${image.id}`);
-        console.log('Zdjęcie usunięte z API');
+        console.log('Photo removed from database.');
       } catch (error) {
-        console.error("Błąd podczas usuwania zdjęcia z API:", error);
-        alert("Nie udało się usunąć zdjęcia.");
+        console.error("Error when deleting a photo from the database:", error);
+        alert("Failed to delete photo.");
         return;
       }
     } else {
@@ -99,12 +99,12 @@ export default function EditOffer() {
     event.preventDefault();
 
     if (!offerData.offerDescription || !offerData.offerDescription.trim()) {
-      setDescriptionError('Opis nie może być pusty.');
+      setDescriptionError('The description must not be empty.');
       return;
     }
 
     if (offerData.images.length === 0) {
-      setImageError('Oferta musi zawierać przynajmniej jedno zdjęcie.');
+      setImageError('The offer must include at least one photo.');
       return;
     }
 
@@ -121,11 +121,11 @@ export default function EditOffer() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      alert('Ogłoszenie zostało zaktualizowane!');
+      alert('The offer has been updated!');
       navigate('/');
     } catch (error) {
-      console.error("Błąd podczas aktualizacji ogłoszenia:", error);
-      alert('Nie udało się zaktualizować ogłoszenia.');
+      console.error("Error while updating the offer:", error);
+      alert('Failed to update offer.');
     }
   };
 

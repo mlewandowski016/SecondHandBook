@@ -14,6 +14,7 @@ namespace SecondHandBook.Services
         void Reserve(int bookOfferId);
         void EditOffer(int bookOfferId, UpdateBookOfferDto dto);
         void DeleteImage(int imageId);
+        void DeleteOffer(int bookOfferId);
     }
     public class AvailableBooksOfferService : IAvailableBookOfferService
     {
@@ -160,6 +161,17 @@ namespace SecondHandBook.Services
                 throw new NotFoundException("Image not found");
 
             _context.BookOfferImages.Remove(image);
+            _context.SaveChanges();
+        }
+
+        public void DeleteOffer(int bookOffer)
+        {
+            var offer = _context.BookOffers.FirstOrDefault(x => x.Id == bookOffer);
+
+            if (offer is null)
+                throw new NotFoundException("Book offer not found");
+
+            _context.BookOffers.Remove(offer);
             _context.SaveChanges();
         }
     }

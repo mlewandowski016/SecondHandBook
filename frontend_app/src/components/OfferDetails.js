@@ -23,7 +23,7 @@ export default function BookDetails() {
         setOffer(data)
 
       } catch (error) {
-        console.log('Błąd podczas pobierania książki:', error);
+        console.log('Error while fetching a book:', error);
       }
     }
     fetchBook();
@@ -57,14 +57,21 @@ export default function BookDetails() {
   };
 
   const handleDelete = () => {
-    if (window.confirm('Czy na pewno chcesz usunąć to ogłoszenie?')) {
-      // Tutaj logika usuwania
-      navigate('/');
+    if (window.confirm('Are you sure you want to remove this offer??')) {
+      try {
+        api.delete(`/offers/${id}`);
+        console.log("Offer removed successfully")
+        navigate('/');
+      } catch (error) {
+        console.error("Error when deleting a offer from the database:", error);
+        alert("Failed to delete offer.");
+        return;
+      }
     }
   };
 
   if (!offer || !user) {
-    return <div className="text-center py-8">Ładowanie...</div>;
+    return <div className="text-center py-8">Loading...</div>;
   }
 
   const isCreator = user && user.id === offer.giverId;

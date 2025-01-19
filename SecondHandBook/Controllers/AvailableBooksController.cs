@@ -63,5 +63,13 @@ namespace SecondHandBook.Controllers
 
             return Ok();   
         }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteOffer([FromRoute] int id)
+        {
+            _bookOfferService.DeleteOffer(id);
+
+            return Ok();
+        }
     }
 }

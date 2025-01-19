@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SecondHandBook.Models;
 
 namespace SecondHandBook.Entities
 {
